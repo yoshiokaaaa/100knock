@@ -1,0 +1,7 @@
+#10
+wc -l hightemp.txt
+
+#11
+sed -e 's/ /\t/g' hightemp.txt > hightemp_2.txt
+
+#12
