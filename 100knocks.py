@@ -235,7 +235,7 @@ with open('hightemp.txt','r') as f:
         i = line.split("\t")
         col.append(i)
     del col[-1]
-    col.sort(key=lambda x:x[3])
+    col.sort(key=lambda x:x[2])
     print(col)
     a = []
     for i in col:
