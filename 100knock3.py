@@ -68,3 +68,18 @@ with open('uk.json','rt') as f:
         m = re.search(u"(ファイル|File):(.*?[|])",line)
         if m:
             print(m.group()[5:-1])
+
+# In[]
+import re
+
+with open('uk.json','rt') as f:
+    jsonuk = f.read()
+    m = re.search("",jsonuk)
+    if m:
+        print(m.group())
+
+
+a = "<a>b<c>"
+m = re.search("<.*>",a)
+if m:
+    print(m.group())
