@@ -1,1 +1,9 @@
 # In[]
+import MeCab
+
+text = u"すもももももももものうち"
+mecab = MeCab.Tagger()
+mecab.parse(text)
+encoded_text = text.encode('utf-8') # encodeが必要
+encoded_result = tagger.parse(text)
+result = result.decode('utf-8')
