@@ -1,12 +1,12 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 import sys
 import MeCab
 mecab = MeCab.Tagger("-Ochasen")
-node = mecab.parse("すもももももももものうち")
+node = mecab.parse("多くの動物が人間によって滅ぼされた")
 print(node)
 
 
@@ -119,7 +119,7 @@ for i in neco_dict:
 print(nouns)
 
 
-# In[10]:
+# In[22]:
 
 count_dic = {}
 for i in neco_dict:
@@ -129,23 +129,49 @@ for i in neco_dict:
         if k['surface'] in count_dic:
             count_dic[k['surface']] += 1
 count_dic = [(k, v) for k, v in sorted(count_dic.items(), key=lambda x: x[1], reverse=True)]
-print(count_dic)
+print(list(count_dic))
 
 
 
-# In[20]:
+# In[37]:
 
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
-import numpy as np
+get_ipython().magic('matplotlib inline')
 ten = count_dic[:10]
+print(type(ten))
 print(ten)
 words = []
+occur = []
 for i in ten:
     words.append(i[0])
-    xrange = len(words)
-topten = ten.zip()
+    occur.append(i[1])
 print(words)
+print(occur)
+fp = FontProperties(fname=r'/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc', size=14)
+
+plt.xticks(range(len(words)),words,fontproperties=fp)
+plt.bar(range(len(words)),occur,align='center')
+
+
+# In[44]:
+
+plt.xlabel('出現頻度', fontproperties=fp)
+plt.ylabel('単語の種類数', fontproperties=fp)
+freq = []
+for i in count_dic:
+    freq.append(i[1])
+plt.hist(freq,bins = 20,range = (1,20))
+
+
+# In[48]:
+
+plt.xlabel('出現度順位', fontproperties=fp)
+plt.ylabel('出現頻度', fontproperties=fp)
+rank = list(range(1,len(count_dic) + 1))
+plt.xscale('log')
+plt.yscale('log')
+plt.scatter(rank,freq)
 
 
 # In[ ]:
